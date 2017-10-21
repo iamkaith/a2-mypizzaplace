@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> <%= title %> </title>
+    <%- include('headcontent.ejs') %>
+</head>
+
+<body>
+    <div class="container">
+        <%- include('header.ejs') %>
+        <nav class="navbar navbar-dark bg-dark navbar-expand">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                            <li class="nav-item"><a href="/" class="nav-link">Place Your Order</a></li>
+                            <li class="active nav-item"><a href="/orders" class="nav-link">Orders List</a></li>
+                    </ul>
+                </div>
+        </nav>
+
+        <!-- order list -->
+        <br/>
+        <table class="table table-striped ">
+            <thead>
+                <th scope="col">#</th>
+                <th scope="col">Size</th>
+                <th scope="col">Crust</th>
+                <th scope="col">Toppings</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Amount</th>
+            </thead>
+            <tbody id="orders">
+                <!-- populate orders from db -->
+            </tbody>
+        </table>
+</body>
+<%- include('scripts.ejs') %>
+
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="javascripts/myOrders.js"></script>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> <%= title %> </title>
+    <%- include('headcontent.ejs') %>
+</head>
+
+<body>
+    <div class="container">
+        <%- include('header.ejs') %>
+            <nav class="navbar navbar-dark bg-dark navbar-expand">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="active nav-item"><a href="/" class="nav-link">Place Your Order</a></li>
+                        <li class="nav-item"><a href="/orders" class="nav-link">Orders List</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- form start -->
+            
+            <form method="post" id="submitForm">
+                <!-- size -->
+                <div class="form-check">
+                    <h3>Pick your favourite pizza size:</h3>
+                    <label class="form-check-label size">
+                    <input type="radio" class="form-check-input size" name="size" value="small" required>Small<br>
+                    <input type="radio" class="form-check-input size" name="size" value="medium" required>Medium<br>
+                    <input type="radio" class="form-check-input size" name="size" value="large" required>Large<br>
+                </label><br>
+                </div>
+
+                <br>
+                <!-- crust -->
+                <div class="form-check">
+                    <h3>Pick your favourite pizza crust:</h3>
+                    <label class="form-check-label crust">
+                    <input type="radio" class="form-check-input crust" name="crust" value="regular" required>Regular<br>
+                    <input type="radio" class="form-check-input crust" name="crust" value="thin" required>Thin<br>
+                    </label><br>
+                </div>
+
+                <!-- toppings -->
+
+                <br>
+                <div class="form-check">
+                    <h3>The best part, pick your toppings:</h3>
+                    <label class="form-check-label topping">
+                    <input type="checkbox" class="form-check-input topping" name="topping" value="cheese">Cheese<br>
+                    <input type="checkbox" class="form-check-input topping" name="topping" value="mushroom">Mushroom<br>
+                    <input type="checkbox" class="form-check-input topping" name="topping" value="pepperoni">Pepperoni<br>
+                    <input type="checkbox" class="form-check-input topping" name="topping" value="sausage">Sausage<br>
+                    <input type="checkbox" class="form-check-input topping" name="topping" value="chicken">Chicken<br>
+                    </label><br>
+                </div>
+
+
+                <!-- customer information -->
+                <br>
+                <h2>Delivery and Contact Information</h2>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control firstName" id="firstName" name="firstName" placeholder="First Name" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control lastName" id="lastName" name="lastName" placeholder="Last Name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="address1">Address</label>
+                            <input type="text" class="form-control address1" id="address1" name="address1" placeholder="1234 Main St" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control city" id="city" name="city" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="postal">Postal Code</label>
+                            <input type="text" class="form-control postal" id="postal" name="postal" placeholder="V5G 3H2" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" class="form-control phone" id="phone" name="phone" placeholder="123-456-7890" required>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control email" id="email" name="email" placeholder="email@email.com" required>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- submit -->
+                <button type="submit" class="btn btn-success">Submit</button>
+                <div id="statusMsg">
+                </div>
+
+            </form>
+
+</div>
+</body>
+<%- include('scripts.ejs') %>
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="javascripts/myIndex.js"></script>
+</html>
