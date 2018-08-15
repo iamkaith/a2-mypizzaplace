@@ -1,18 +1,18 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const expressValidator = require("express-validator");
 const { check, validationResult } = require('express-validator/check');
 const { matchedData } = require('express-validator/filter');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var orders = require('./routes/orders');
+const orders = require('./routes/orders');
+const config = require('./config/config');
 
-//Set up connection to MongoDB
-var mongoUrl = 'mongodb://localhost/kaer';
+let mongoUrl = `mongodb://${config.mongo.admin.user}:${config.mongo.admin.password}@${config.mongo.url}`;
 mongoose.connect(mongoUrl, function (err) {
   if (err) {
     console.log("Error connecting to MongoDB");
@@ -20,7 +20,7 @@ mongoose.connect(mongoUrl, function (err) {
   }
 });
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,7 +49,7 @@ process.on('SIGINT', function () {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

@@ -19,8 +19,7 @@ router.get('/orders', function(req, res){
     res.render('orders', vm);
 });
 
-//REST Endpoint
-
+//REST Endpoints
 router.post('/api/order', [
     check("size").isAlpha(),
     check("crust").isAlpha(),
