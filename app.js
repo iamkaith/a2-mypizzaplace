@@ -5,17 +5,17 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressValidator = require("express-validator");
-const { check, validationResult } = require('express-validator/check');
-const { matchedData } = require('express-validator/filter');
 const mongoose = require('mongoose');
 
 const orders = require('./routes/orders');
 const config = require('./config/config');
 
-let mongoUrl = `mongodb://${config.mongo.admin.user}:${config.mongo.admin.password}@${config.mongo.url}`;
+
+// Establishing database connection
+let mongoUrl = `mongodb://${config.mongo.admin.user}:${config.mongo.admin.password}${config.mongo.url}`;
 mongoose.connect(mongoUrl, function (err) {
   if (err) {
-    console.log("Error connecting to MongoDB");
+    console.error("Error connecting to MongoDB");
     process.exit(1);
   }
 });

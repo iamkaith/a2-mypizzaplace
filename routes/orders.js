@@ -9,7 +9,7 @@ var orderNumber = 1;
 
 // order page index
 router.get('/', function(req, res){
-    var vm = {title : "Place Your Order"};
+    let vm = {title : "Place Your Order"};
     res.render('index', vm);
 });
 
@@ -34,8 +34,9 @@ router.post('/api/order', [
     
     const error = req.validationErrors(req);
     
-    // error! user will refresh, add placeholders in html to aid user
+    // error!
     if(error) {
+        console.error(error);
         res.status(400).json({error : "Form validation error: something went wrong" });
     }    
 
@@ -43,13 +44,13 @@ router.post('/api/order', [
     if(!error) {
         console.log("YAY: no validation errors");
 
-        var tempOrder = matchedData(req);
+        let tempOrder = matchedData(req);
         tempOrder.number = orderNumber;
         
-        var calculator = new Calculator(tempOrder.size, tempOrder.topping);
+        let calculator = new Calculator(tempOrder.size, tempOrder.topping);
         tempOrder.amount = calculator.total;
 
-        var newOrder = new Order(tempOrder);
+        let newOrder = new Order(tempOrder);
 
         console.log("Received add order request\n", newOrder);
         
@@ -67,7 +68,6 @@ router.post('/api/order', [
 
 // order list
 router.get('/api/orders', function(req, res){
-    
     // list
     Order.find({}, function(err, allOrders) {
         res.json(allOrders);

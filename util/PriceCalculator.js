@@ -1,5 +1,4 @@
 // Price Calculator Module
-// by Kae Ramirez A00923169
 
 const GST = 0.05;
 const PST = 0.07;
