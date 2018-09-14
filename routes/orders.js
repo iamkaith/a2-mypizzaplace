@@ -5,7 +5,6 @@ const { check, validationResult } = require('express-validator/check');
 const { matchedData } = require('express-validator/filter');
 
 let router = express.Router();
-var orderNumber = 1;
 
 // order page index
 router.get('/', function(req, res){
@@ -36,39 +35,32 @@ router.post('/api/order', [
     
     // error!
     if(error) {
-        console.error(error);
         res.status(400).json({error : "Form validation error: something went wrong" });
     }    
 
     // no errors! continue
     if(!error) {
-        console.log("YAY: no validation errors");
-
         let tempOrder = matchedData(req);
-        tempOrder.number = orderNumber;
+        tempOrder.number = new Date().getTime(); 
         
         let calculator = new Calculator(tempOrder.size, tempOrder.topping);
         tempOrder.amount = calculator.total;
 
         let newOrder = new Order(tempOrder);
 
-        console.log("Received add order request\n", newOrder);
-        
         newOrder.save(function(error) {
             if(error) {
-                console.log("Error saving order in db: " + error);
+                res.status(500).json({error: "Error submitting pizza order into our system. :( "});
                 return;
             }
 
             res.json({status : "Successfully added a order"});
         })
-        orderNumber++;
     }    
 });
 
 // order list
 router.get('/api/orders', function(req, res){
-    // list
     Order.find({}, function(err, allOrders) {
         res.json(allOrders);
     });  

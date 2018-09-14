@@ -2,7 +2,7 @@ $(function ready() {
     
         $.getJSON("/api/orders", function (data) {
             data.forEach(function (order) {
-                console.log(order);
+                //console.log(order);
                 let fullAddress = order.address + ", " + order.city + ", " + order.postal;
                 let contactInfo = order.phone + ", "  + order.email;
 

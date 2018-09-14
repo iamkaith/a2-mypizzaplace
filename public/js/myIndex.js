@@ -2,7 +2,6 @@ $(function ready() {
     $("#submitForm").submit(function (event) {
         event.preventDefault();
 
-        console.log("i'm processing the form");
         var newOrder = JSON.stringify({
             size: $('.size:checked').val(),
             crust: $('.crust:checked').val(),
